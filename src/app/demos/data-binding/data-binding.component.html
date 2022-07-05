@@ -1,0 +1,49 @@
+<div class="container main-container">
+    <h3>Interpolation</h3>
+    <!-- <p>O número de cliques é: {{ contadorClique }}</p><br /> -->
+    Podemos utilizar o ngClass para criar várias possibilidades de nomes de class <br />
+    <p [ngClass]="{
+        'text-secondary':contadorClique < 3,
+        'text-success':contadorClique >= 3,
+        'text-warning':contadorClique >= 5,
+        'text-danger':contadorClique >= 9
+    }">O número de cliques é: {{ contadorClique }}</p>
+
+    <br />
+    <br />
+
+    <h3>Property Binding</h3>
+    <button class="btn btn-info" [disabled]="contadorClique >= 10">Info</button><br />
+    <br />
+    <img [src]="urlImagem" height="50px" width="50px" /><br />
+    <br />
+    <br />
+
+    <h3>Event Binding</h3>
+    <button class="btn btn-warning" (click)='adicionarClique()'>Clique-me</button>&nbsp;
+    <button class="btn btn-danger" (click)='zerarContador()' [disabled]="contadorClique < 10">Zerar</button><br />
+    <br />
+    <br />
+
+    <!-- 3 formas de fazer o Two way biding -->
+    <!-- <h3>Two-way Binding</h3> 
+        Aqui ainda não temos um dataBinding, mas funciona de forma muito semelhante.<br />
+    <input type="text" (keyup)="keyUp($event)" placeholder="Digite seu nome">
+    <br />
+    <br />
+    <label>Seu nome é: {{ nome }}</label> -->
+
+    <!-- <h3>Two-way Binding</h3> 
+    <input type="text" [ngModel]="nome" (ngModelChange)="nome = $event" placeholder="Digite seu nome"> -->  <!-- Estou falando que eu tenho um modelo [ngModel] que está sendo atendido por nome. Toda vez que esse modelo for alterado (ngModelChange), o nome (var) vai receber o valor do evento ($event) -->
+    <!-- <br />
+    <br />
+    <label>Seu nome é: {{ nome }}</label> -->
+
+    <h3>Two-way Binding</h3> 
+    <input type="text" [(ngModel)]="nome" placeholder="Digite seu nome">   <!-- Consigo fazer a mesma função do exemplo anterior só que de forma resumida. Utilizando o banana-in-box [()] -->
+    <br />
+    <br />
+    <label class="{{ nome }}">Seu nome é: {{ nome }}</label> <!-- Podemos colocar o nome da classe de forma interpolalda tb. Assim se dentro do imput, eu escrever o nome da classe btn btn-danger, o label irá se transformar em um botão-->
+    <br />
+    <label [ngClass]="nome">Seu nome é: {{ nome }}</label> <!-- Podemos colocar o nome da classe de forma property binding tb. Assim o angular passa a gerenciar a classe e se dentro do imput, eu escrever o nome da classe btn btn-danger, o label irá se transformar em um botão tb-->
+</div>
